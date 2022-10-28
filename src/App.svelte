@@ -2,7 +2,6 @@
     import Navbar from './Navbar.svelte';
     import Player from './Player.svelte';
 	import AddPlayer from './AddPlayer.svelte';
-	import RemovePlayer from './RemovePlayer.svelte';
 
     let players = [
         {
@@ -25,9 +24,9 @@
 	};
 
 	const removePlayer = (e) => {
-		const deletePlayer = e.detail;
+		const name = e.detail;
 		players = players.filter( player => {
-			return player.name.toLowerCase() !== deletePlayer.name.toLowerCase() 
+			return player.name.toLowerCase() !== name.toLowerCase() 
 		});
 	}
 </script>
@@ -40,13 +39,12 @@
 
 		<!-- Catch the dispatch from the AddPlayer component -->
 		<AddPlayer on:addplayer={addPlayer}/> 
-		<RemovePlayer on:removeplayer={removePlayer}/>
 
         {#if players.length === 0}
             <p>No Players</p>
         {:else}
             {#each players as player}
-                <Player name={player.name} points={player.points} />
+                <Player name={player.name} points={player.points} on:removeplayer={removePlayer} />
             {/each}
         {/if}
     </div>
