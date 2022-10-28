@@ -1,4 +1,5 @@
 <script>
+	import Navbar from './Navbar.svelte';
 	let name = "John Doe";
 	let points = 100;
 	let showControls = false;
@@ -8,6 +9,9 @@
 	const toggleControls = () => (showControls = !showControls);
 </script>
 
+<header>
+	<Navbar/>
+</header>
 <main>
 	<div class="container">
 		<div class="card">
